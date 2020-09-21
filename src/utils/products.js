@@ -1,0 +1,1 @@
+export const fromProductSlugtoUrl = (slug) =>`/products/${slug}`

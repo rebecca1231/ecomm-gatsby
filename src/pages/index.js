@@ -1,22 +1,59 @@
 import React from "react"
-import { Link } from "gatsby"
-
+import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+import { formatPrice } from "../utils/format"
+import { fromProductSlugtoUrl } from "../utils/products"
+
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+    <h2>Shop</h2>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr",
+        gridGap: "20px",
+      }}
+    >
+      {data.allStrapiProduct.nodes.map(product => (
+        <Link style={{ textDecoration: "none", color: "black" }} to={fromProductSlugtoUrl(product.slug)}>
+          <div>
+            <div>
+              <Img fixed={product.thumbnail.childImageSharp.fixed} />
+            </div>
+            <h3 style={{ marginBottom: 0 }}> {product.name} </h3>
+            {formatPrice(product.price_in_cent)}
+          </div>
+        </Link>
+      ))}
     </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
   </Layout>
 )
 
 export default IndexPage
+
+export const pageQuery = graphql`
+  query MyQuery {
+    allStrapiProduct {
+      nodes {
+        id
+        description
+        created_at
+        name
+        price_in_cent
+        strapiId
+        slug
+        thumbnail {
+          childImageSharp {
+            fixed(width: 200, height: 200) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    }
+  }
+`
