@@ -13,18 +13,17 @@ export const getCart = () => {
   return []
 }
 
-export const addToCart = product => {
+export const addToCart = (product, qty = 1) => {
   const cart = getCart()
-
-  const indexOfProduct = cart.findIndex(alreadyInCart =>
-     alreadyInCart.strapId === product.strapId
-)
-
-  if (indexOfProduct !== -1) {
-    cart[indexOfProduct].qty += 1
-  } else {
-    product.qty = 1
+  const index = cart.findIndex(item => item.strapiId === product.strapiId)
+  if (index === -1) {
+    product.qty = qty
     cart.push(product)
+  } else {
+    cart[index].qty += qty
+    if(cart[index].qty === 0){
+      cart.splice(index, 1)
+    }
   }
   setCart(cart)
 }

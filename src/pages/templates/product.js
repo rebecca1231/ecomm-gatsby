@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../../components/layout"
 import { formatPrice } from "../../utils/format"
@@ -16,6 +16,12 @@ const ProductTemplate = ({ data }) => (
       style={{ fontSize: "20px", padding: "24px", borderRadius: "2px" }}
     >
       Add To Cart
+    </button>
+    <button       style={{ fontSize: "20px", padding: "24px", borderRadius: "2px" }}
+>
+    <Link to="/cart">
+Cart
+    </Link>
     </button>
   </Layout>
 )

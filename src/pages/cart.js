@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import { formatPrice } from "../utils/format"
-import { getCart } from "../utils/cart"
+import { getCart, addToCart } from "../utils/cart"
 
 const CartPage = () => {
   const cart = getCart()
@@ -35,8 +35,12 @@ const CartPage = () => {
                   {product.name}
                 </span>
               </td>
-              <td>{formatPrice(product.price_in_cent)} </td>
-              <td style={{ textAlign: "center" }}>{product.qty} </td>
+              <td>{formatPrice(product.price_in_cent)}</td>
+              <td style={{ textAlign: "center" }}>
+                <span onClick={() => addToCart(product, -1)}> - </span>
+                {product.qty}
+                <span onClick={() => addToCart(product)}> + </span>
+              </td>
             </tr>
           ))}
         </tbody>
