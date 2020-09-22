@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useState, useCallback } from "react"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import { formatPrice } from "../utils/format"
-import { getCart, addToCart } from "../utils/cart"
+import { getCart, addToCart, cartSubtotal, cartTotal, shouldPayShipping, SHIPPING_RATE } from "../utils/cart"
 
 const CartPage = () => {
+  const [, updateState] = React.useState()
+  const forceUpdate = React.useCallback(() => updateState({}), [])
   const cart = getCart()
   return (
     <Layout>
@@ -37,14 +39,39 @@ const CartPage = () => {
               </td>
               <td>{formatPrice(product.price_in_cent)}</td>
               <td style={{ textAlign: "center" }}>
-                <span onClick={() => addToCart(product, -1)}> - </span>
+                <span
+                  onClick={() => {
+                    addToCart(product, -1)
+                    forceUpdate()
+                  }}
+                >
+                  {" "}
+                  -{" "}
+                </span>
                 {product.qty}
-                <span onClick={() => addToCart(product)}> + </span>
+                <span
+                  onClick={() => {
+                    addToCart(product)
+                    forceUpdate()
+                  }}
+                >
+                  {" "}
+                  +{" "}
+                </span>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <h3>SubTotal: {formatPrice(cartSubtotal(cart))} </h3>
+      {shouldPayShipping(cart) &&
+      <h3>Shipping: {formatPrice(SHIPPING_RATE)} </h3>
+      }
+      {!shouldPayShipping(cart) &&
+      <h3>Shipping: Free</h3>
+      }
+      <h3>Total: {formatPrice(cartTotal(cart))} </h3>
+
     </Layout>
   )
 }
