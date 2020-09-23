@@ -2,13 +2,23 @@ import React, { useState, useCallback } from "react"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Checkout from '../components/Checkout'
 
 import { formatPrice } from "../utils/format"
-import { getCart, addToCart, cartSubtotal, cartTotal, shouldPayShipping, SHIPPING_RATE } from "../utils/cart"
+import {
+  getCart,
+  addToCart,
+  cartSubtotal,
+  cartTotal,
+  shouldPayShipping,
+  SHIPPING_RATE,
+} from "../utils/cart"
 
 const CartPage = () => {
   const [, updateState] = React.useState()
   const forceUpdate = React.useCallback(() => updateState({}), [])
+  const [showCheckout, setShowCheckout] = useState(false)
+
   const cart = getCart()
   return (
     <Layout>
@@ -64,14 +74,22 @@ const CartPage = () => {
         </tbody>
       </table>
       <h3>SubTotal: {formatPrice(cartSubtotal(cart))} </h3>
-      {shouldPayShipping(cart) &&
-      <h3>Shipping: {formatPrice(SHIPPING_RATE)} </h3>
-      }
-      {!shouldPayShipping(cart) &&
-      <h3>Shipping: Free</h3>
-      }
+      {shouldPayShipping(cart) && (
+        <h3>Shipping: {formatPrice(SHIPPING_RATE)} </h3>
+      )}
+      {!shouldPayShipping(cart) && <h3>Shipping: Free</h3>}
       <h3>Total: {formatPrice(cartTotal(cart))} </h3>
-
+      <div>
+        {cart && cart.length > 0 && (
+          <button
+            style={{ fontSize: "24px", padding: "12px 24px" }}
+            onClick={() => setShowCheckout(true)}
+          >
+            Checkout
+          </button>
+        )}
+      </div>
+      {showCheckout && <Checkout />}
     </Layout>
   )
 }
