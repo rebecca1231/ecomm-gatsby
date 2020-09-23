@@ -2,17 +2,16 @@ import React, { useState, useCallback } from "react"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Checkout from '../components/Checkout'
+import Checkout from "../components/Checkout"
 
 import { formatPrice } from "../utils/format"
+import { getCart, addToCart } from "../utils/cart"
 import {
-  getCart,
-  addToCart,
   cartSubtotal,
   cartTotal,
   shouldPayShipping,
   SHIPPING_RATE,
-} from "../utils/cart"
+} from "../utils/cartTotals"
 
 const CartPage = () => {
   const [, updateState] = React.useState()
