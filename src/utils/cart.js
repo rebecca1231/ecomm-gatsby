@@ -1,5 +1,6 @@
 export const setCart = cart => {
   localStorage.setItem("cart", JSON.stringify(cart))
+  return cart
 }
 
 export const getCart = () => {
@@ -26,4 +27,5 @@ export const addToCart = (product, qty = 1) => {
     }
   }
   setCart(cart)
+  return cart
 }
