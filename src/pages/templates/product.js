@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../../components/layout"
 import { formatPrice } from "../../utils/format"
-import { addToCart } from "../../utils/cart"
+import { CartContext } from '../../components/context/CartContext'
 
 const ProductTemplate = ({ data }) => {
   const [qty, setQty] = useState(1)
+  const {addToCart} = useContext(CartContext)
 
   console.log("Product template data", data)
   return (

@@ -8,7 +8,7 @@ import {STRIPE_PUBLISHABLE_KEY} from '../client-config'
 
 const stripe = loadStripe(STRIPE_PUBLISHABLE_KEY)
 
-export default () => (
+export default ({}) => (
     <div>
         <Elements stripe={stripe}>
             <CheckoutForm />

@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback, useContext } from "react"
 import Img from "gatsby-image"
+
+import {CartContext} from '../components/context/CartContext'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Checkout from "../components/Checkout"
 
 import { formatPrice } from "../utils/format"
-import { getCart, addToCart } from "../utils/cart"
 import {
   cartSubtotal,
   cartTotal,
@@ -14,11 +15,16 @@ import {
 } from "../utils/cartTotals"
 
 const CartPage = () => {
-  const [, updateState] = React.useState()
-  const forceUpdate = React.useCallback(() => updateState({}), [])
+  const [, updateState] = useState()
+  const forceUpdate = useCallback(() => updateState({}), [])
   const [showCheckout, setShowCheckout] = useState(false)
 
-  const cart = getCart()
+
+  const {cart, addToCart} = useContext(CartContext)
+  console.log("CartPage cart", cart)
+  console.log("CartPage add", addToCart)
+
+
   return (
     <Layout>
       <SEO title="Cart" />
@@ -88,7 +94,7 @@ const CartPage = () => {
           </button>
         )}
       </div>
-      {showCheckout && <Checkout />}
+      {showCheckout && <Checkout cart={cart} />}
     </Layout>
   )
 }

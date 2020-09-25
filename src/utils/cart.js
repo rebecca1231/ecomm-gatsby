@@ -1,4 +1,4 @@
-export const setCart = cart => {
+export const saveCart = cart => {
   localStorage.setItem("cart", JSON.stringify(cart))
   return cart
 }
@@ -12,20 +12,4 @@ export const getCart = () => {
   } catch (err) {}
 
   return []
-}
-
-export const addToCart = (product, qty = 1) => {
-  const cart = getCart()
-  const index = cart.findIndex(item => item.strapiId === product.strapiId)
-  if (index === -1) {
-    product.qty = parseInt(qty)
-    cart.push(product)
-  } else {
-    cart[index].qty += parseInt(qty)
-    if (cart[index].qty === 0) {
-      cart.splice(index, 1)
-    }
-  }
-  setCart(cart)
-  return cart
 }
