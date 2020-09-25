@@ -1,12 +1,12 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useContext } from "react"
-import { CartContext, ContextCart } from "../components/context/CartContext"
-import { cartTotal } from "../utils/cartTotals"
+
+import { CartContext } from "../components/context/CartContext"
 
 const Header = ({ siteTitle }) => {
+  const { cart } = useContext(CartContext)
 
-  const {cart} = useContext(CartContext)
   return (
     <header
       style={{
@@ -21,7 +21,7 @@ const Header = ({ siteTitle }) => {
           padding: `1.45rem 1.0875rem`,
         }}
       >
-        <h1 style={{ margin: 0 }}>
+        <h1 style={{ margin: 0, position: "relative" }}>
           <Link
             to="/"
             style={{
@@ -31,25 +31,58 @@ const Header = ({ siteTitle }) => {
           >
             {siteTitle}
           </Link>
+
+          {cart && cart.length > 0 && (
+            <Link to="/cart">
+              <div
+                style={{
+                  position: "absolute",
+                  right: "0",
+                  top: 0,
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                  }}
+                >
+                  🛒
+                  <span
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "20px",
+                      fontSize: "12px",
+                      backgroundColor: "white",
+                      textAlign: "center",
+                      verticalAlign: "middle",
+                      display: "inline-block",
+                      lineHeight: "20px",
+                      position: "absolute",
+                      right: "20px",
+                      top: "30px",
+                    }}
+                  >
+                    {cart.reduce((counter, product) => {
+                      return counter + product.qty
+                    }, 0)}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          )}
         </h1>
-        {cart && cart.length &&
-        <>
-        <div>🛒
-        {cart.length}
-        </div>
-        </>
-        }
       </div>
     </header>
   )
+}
 
-  Header.propTypes = {
-    siteTitle: PropTypes.string,
-  }
+Header.propTypes = {
+  siteTitle: PropTypes.string,
+}
 
-  Header.defaultProps = {
-    siteTitle: ``,
-  }
+Header.defaultProps = {
+  siteTitle: ``,
 }
 
 export default Header

@@ -21,9 +21,6 @@ const CartPage = () => {
 
 
   const {cart, addToCart} = useContext(CartContext)
-  console.log("CartPage cart", cart)
-  console.log("CartPage add", addToCart)
-
 
   return (
     <Layout>
