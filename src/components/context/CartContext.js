@@ -9,6 +9,11 @@ export default ({ children }) => {
     saveCart(updatedCart)
   }
 
+  const clearCart = () => {
+    const updatedCart = []
+    updateCart(updatedCart)
+  }
+
   const addToCart = (product, qty = 1) => {
     const copy = [...cart]
     const index = copy.findIndex(item => item.strapiId === product.strapiId)
@@ -25,7 +30,7 @@ export default ({ children }) => {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   )
