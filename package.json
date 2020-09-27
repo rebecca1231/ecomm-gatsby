@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "em-boutique",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "An Ecommerce App using Gatsby and Strapi API on the backend",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Rebecca Hirai",
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.9.0",
