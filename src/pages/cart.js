@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useContext } from "react"
 import Img from "gatsby-image"
 
-import { CartContext } from "../components/context/CartContext"
+import { CartContext } from "../context/CartContext"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Checkout from "../components/Checkout"

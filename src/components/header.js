@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useContext } from "react"
 
-import { CartContext } from "../components/context/CartContext"
+import { CartContext } from "../context/CartContext"
 
 const Header = ({ siteTitle }) => {
   const { cart } = useContext(CartContext)

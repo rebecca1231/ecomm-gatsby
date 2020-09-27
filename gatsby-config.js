@@ -5,18 +5,15 @@ module.exports = {
     author: `Rebecca n Emma`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-strapi`,
+      resolve: "gatsby-source-strapi",
       options: {
         apiURL: process.env.API_URL || "http://localhost:1337",
-        queryLimit: 1000, // Default to 100
-        contentTypes: ['product'], //collections
-        //If using single types place them in this array.
-        singleTypes: [], //tbd
-        // Possibility to login with a strapi user, when content types are not publically available (optional).
+        queryLimit: 10000,
+        contentTypes: ["product"], //Which content types we want
       },
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -38,8 +35,5 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
