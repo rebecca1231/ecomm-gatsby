@@ -1,5 +1,7 @@
-
 const path = require("path")
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
