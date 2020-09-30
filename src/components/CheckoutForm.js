@@ -4,7 +4,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js"
 
 import { CartContext } from "./../context/CartContext"
 import { formatPrice } from "../utils/format"
-import {API_URL} from '../utils/urls'
+import {GATSBY_API_URL} from '../utils/urls'
 const Card_Styles = {
   style: {
     base: {
@@ -75,7 +75,7 @@ export default () => {
       cart,
     }
 
-    const response = await fetch(`${API_URL}/orders`, {
+    const response = await fetch(`${GATSBY_API_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export default () => {
   useEffect(() => {
     const loadToken = async () => {
       setLoading(true)
-      const response = await fetch(`${API_URL}/orders/payment`, {
+      const response = await fetch(`${GATSBY_API_URL}/orders/payment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
