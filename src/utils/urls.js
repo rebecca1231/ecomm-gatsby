@@ -1,1 +1,1 @@
-export const API_URL = "https://infinite-beach-68145.herokuapp.com" || 'http://localhost:1337'
+export const GATSBY_API_URL = process.env.GATSBY_API_URL || 'http://localhost:1337'
