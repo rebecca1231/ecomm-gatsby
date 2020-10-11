@@ -1,0 +1,25 @@
+.title {
+  color: #2a027b;
+}
+
+img {
+  border-radius: 5px;
+}
+.p {
+  color: hsla(0, 0%, 0%, 0.7);
+}
+
+.button {
+  background: #a777e3;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  margin: 5px;
+}
+
+.button:hover {
+  background: #883fe1;
+  cursor: pointer;
+}

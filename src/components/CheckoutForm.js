@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
-
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js"
 
+import styles from './checkoutForm.module.scss'
 import { CartContext } from "./../context/CartContext"
 import { formatPrice } from "../utils/format"
 import {GATSBY_API_URL} from '../utils/urls'
@@ -52,6 +52,7 @@ export default () => {
           id={label}
           value={value}
           onChange={e => setOnChange(e.target.value)}
+          className={styles.input}
         />
       </div>
     )
@@ -128,16 +129,16 @@ export default () => {
               margin: "20px 0",
             }}
           >
-            {generateInput("Recipient Name", shipping_name, setShipping_name)}
+            {generateInput("Name", shipping_name, setShipping_name)}
             {generateInput("Address", shipping_address, setShipping_address)}
-            {generateInput("State", shipping_state, setShipping_state)}
+            {generateInput("State or Prefecture", shipping_state, setShipping_state)}
             {generateInput("Country", shipping_country, setShipping_country)}
-            {generateInput("Zip Code", shipping_zip, setShipping_zip)}
+            {generateInput("Postal Code", shipping_zip, setShipping_zip)}
 
             <CardElement options={Card_Styles} />
-            <button disabled={!stripe || !valid()} style={{ margin: "12px" }}>
+            <button disabled={!stripe || !valid()} className={styles.button} style={{ margin: "12px" }}>
               {" "}
-              Buy it{" "}
+              Confirm Payment{" "}
             </button>
           </form>{" "}
         </>

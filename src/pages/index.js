@@ -6,20 +6,22 @@ import SEO from "../components/seo"
 
 import { formatPrice } from "../utils/format"
 import { fromProductSlugtoUrl } from "../utils/products"
+import styles from "./index.module.scss"
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h2>Shop</h2>
+    <h2 className={styles.title} >Hot Items</h2>
+    <div className={styles.posts}>
     <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr",
-        gridGap: "20px",
-      }}
+      className={styles.post}
+
     >
       {data.allStrapiProduct.nodes.map(product => (
-        <Link style={{ textDecoration: "none", color: "black" }} to={fromProductSlugtoUrl(product.slug)}>
+        <Link
+          className={styles.a}
+          to={fromProductSlugtoUrl(product.slug)}
+        >
           <div>
             <div>
               <Img fixed={product.thumbnail.childImageSharp.fixed} />
@@ -29,6 +31,7 @@ const IndexPage = ({ data }) => (
           </div>
         </Link>
       ))}
+    </div>
     </div>
   </Layout>
 )
