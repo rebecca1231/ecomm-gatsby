@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-
+import {Link} from 'gatsby'
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
@@ -31,13 +31,14 @@ const ProductTemplate = ({ data }) => {
         value={qty}
         onChange={event => setQty(event.target.value)}
       />
-      <button
+      <Link
+      to="/cart"
         onClick={() => addToCart(data.strapiProduct, qty)}
         className={styles.button}
       >
         {" "}
         Add To Cart
-      </button>
+      </Link>
     </Layout>
   )
 }
@@ -53,7 +54,7 @@ export const query = graphql`
       description
       thumbnail {
         childImageSharp {
-          fixed(width: 640) {
+          fixed(width: 400) {
             ...GatsbyImageSharpFixed
           }
         }

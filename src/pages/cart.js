@@ -56,6 +56,7 @@ const CartPage = () => {
                   <td>{formatPrice(product.price_in_cent)}</td>
                   <td style={{ textAlign: "center" }}>
                   {product.qty}
+                  <div>
                     <span
                       className={styles.smbutton}
                       onClick={() => {
@@ -73,6 +74,7 @@ const CartPage = () => {
                       }}
                     >More
                     </span>
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -1,8 +1,25 @@
 .title {
   color: hsla(0, 0%, 0%, 0.7);
 }
-
-
+.posts{
+  display:flex;
+  flex-wrap: wrap;
+}
+.post{
+  margin:0.25rem 0.25rem;
+  color: hsla(0, 0%, 0%, 0.7);
+}
+.post:hover{
+  color:#EB46B4;
+}
+@media (max-width:500px){
+  .posts{
+    justify-content: space-evenly;
+  }
+  .post{
+    margin: 0.5rem auto;
+  }
+}
   h2 {
     margin-bottom: 0;
   }
@@ -30,6 +47,10 @@
     background: #883fe1;
     cursor: pointer;
 }
+.actions{
+  display:flex;
+  flex-direction:column;
+}
 .smbutton {
     background: #a777e3;
     border-radius: 4px;
@@ -45,3 +66,8 @@
       cursor: pointer;
   }
   
+  @media (max-width:500px){
+      .smbutton{
+        font-size: 0.5rem;
+      }
+  }

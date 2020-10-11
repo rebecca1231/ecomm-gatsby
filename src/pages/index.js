@@ -13,16 +13,13 @@ const IndexPage = ({ data }) => (
     <SEO title="Home" />
     <h2 className={styles.title} >Hot Items</h2>
     <div className={styles.posts}>
-    <div
-      className={styles.post}
-
-    >
       {data.allStrapiProduct.nodes.map(product => (
+        
         <Link
           className={styles.a}
           to={fromProductSlugtoUrl(product.slug)}
         >
-          <div>
+          <div className={styles.post} >
             <div>
               <Img fixed={product.thumbnail.childImageSharp.fixed} />
             </div>
@@ -31,7 +28,6 @@ const IndexPage = ({ data }) => (
           </div>
         </Link>
       ))}
-    </div>
     </div>
   </Layout>
 )
